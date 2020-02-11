@@ -6,13 +6,16 @@ public class ArrayGenerator {
     private int[][] targetArray = new int[5][3];
     private int numberOfColumns = targetArray.length;
     private int numberOfRows = targetArray[0].length;
-    private int randomNumberCounter = getRandomValueForCount();
+    private int randomNumberCounter = new Random()
+            .ints(3, 6)
+            .findFirst()
+            .getAsInt();
 
     public ArrayGenerator() {
         this.getArray();
     }
 
-    private int[][] getArray() {
+    private void getArray() {
         while (randomNumberCounter != 0) {
             int randomColumn = new Random().nextInt(numberOfColumns);
             int randomRow = new Random().nextInt(numberOfRows);
@@ -21,17 +24,9 @@ public class ArrayGenerator {
                 randomNumberCounter--;
             }
         }
-        return targetArray;
     }
 
     public void printArray() {
         System.out.print(Arrays.deepToString(targetArray));
-    }
-
-    private int getRandomValueForCount() {
-        return new Random()
-                .ints(3, 6)
-                .findFirst()
-                .getAsInt();
     }
 }
